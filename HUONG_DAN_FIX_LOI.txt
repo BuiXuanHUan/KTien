@@ -1,0 +1,72 @@
+═══════════════════════════════════════════════════════════
+   HƯỚNG DẪN FIX LỖI: ModuleNotFoundError: No module named 'cgi'
+═══════════════════════════════════════════════════════════
+
+🎯 VẤN ĐỀ:
+   Render đang dùng Python 3.12+ (module cgi đã bị xóa)
+
+✅ GIẢI PHÁP:
+   Dùng Python 3.11 thay vì 3.12+
+
+═══════════════════════════════════════════════════════════
+📋 CÁC BƯỚC FIX
+═══════════════════════════════════════════════════════════
+
+BƯỚC 1: Commit file mới lên GitHub
+   → File runtime.txt đã được tạo
+   → Commit và push lên GitHub
+
+BƯỚC 2: Cập nhật trong Render Dashboard
+   1. Vào Render Dashboard
+   2. Chọn Web Service của bạn
+   3. Vào tab "Settings"
+   4. Tìm "Python Version" hoặc "Environment"
+   5. Chọn Python 3.11 (KHÔNG chọn 3.12+)
+   6. Click "Save Changes"
+
+BƯỚC 3: Redeploy
+   1. Vào tab "Manual Deploy"
+   2. Click "Clear build cache & deploy"
+   3. Hoặc vào "Deploys" → Click "Deploy latest commit"
+
+BƯỚC 4: Kiểm tra
+   → Xem Build Logs
+   → Đảm bảo Python version là 3.11.x
+   → Kiểm tra app có chạy không
+
+═══════════════════════════════════════════════════════════
+🔍 NẾU VẪN LỖI
+═══════════════════════════════════════════════════════════
+
+CÁCH 1: Kiểm tra file runtime.txt
+   → Đảm bảo file runtime.txt có trong repository
+   → Nội dung: python-3.11.9
+
+CÁCH 2: Kiểm tra Build Command
+   → Trong Render Settings
+   → Build Command phải là:
+     pip install --upgrade pip && pip install -r requirements.txt
+
+CÁCH 3: Xem Build Logs
+   → Vào tab "Logs" trong Render
+   → Xem Python version được dùng
+   → Nếu là 3.12+, cần đổi sang 3.11
+
+═══════════════════════════════════════════════════════════
+📝 FILE ĐÃ ĐƯỢC TẠO/CẬP NHẬT
+═══════════════════════════════════════════════════════════
+
+✅ runtime.txt - Chỉ định Python 3.11.9
+✅ render.yaml - Đã cập nhật PYTHON_VERSION
+✅ requirements.txt - Đã cập nhật dependencies
+
+═══════════════════════════════════════════════════════════
+💡 TIP
+═══════════════════════════════════════════════════════════
+
+- Luôn dùng Python 3.11 cho Flask apps trên Render
+- Python 3.12+ đã remove module cgi
+- File runtime.txt sẽ tự động được Render detect
+
+═══════════════════════════════════════════════════════════
+

@@ -2,12 +2,12 @@ services:
   - type: web
     name: dich-thuat
     env: python
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
     startCommand: gunicorn wsgi:application
     plan: free
     envVars:
       - key: PYTHON_VERSION
-        value: 3.11.0
+        value: 3.11.9
       - key: FLASK_ENV
         value: production
 
