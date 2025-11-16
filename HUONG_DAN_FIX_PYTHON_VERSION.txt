@@ -1,0 +1,124 @@
+═══════════════════════════════════════════════════════════
+   FIX: Render vẫn dùng Python 3.13 thay vì 3.11
+═══════════════════════════════════════════════════════════
+
+🎯 VẤN ĐỀ:
+   Render vẫn dùng Python 3.13 mặc dù đã có runtime.txt
+
+✅ GIẢI PHÁP:
+   Cần chỉ định Python version TRỰC TIẾP trong Render Dashboard
+
+═══════════════════════════════════════════════════════════
+📋 CÁC BƯỚC FIX (QUAN TRỌNG!)
+═══════════════════════════════════════════════════════════
+
+BƯỚC 1: Commit file mới
+   → File .python-version đã được tạo
+   → Commit và push lên GitHub
+
+BƯỚC 2: Vào Render Dashboard
+   1. Truy cập: https://dashboard.render.com
+   2. Đăng nhập
+   3. Chọn Web Service của bạn
+
+BƯỚC 3: Vào Settings
+   1. Click tab "Settings" (bên trái)
+   2. Scroll xuống tìm phần "Environment"
+
+BƯỚC 4: Tìm Python Version
+   Tìm một trong các mục sau:
+   - "Python Version"
+   - "Runtime"
+   - "Build & Deploy" → "Environment"
+   - Hoặc "Advanced" → "Environment Variables"
+
+BƯỚC 5: Chỉ định Python 3.11
+   Có thể có các cách sau:
+
+   CÁCH 1: Dropdown menu
+   → Click dropdown "Python Version"
+   → Chọn "Python 3.11" hoặc "3.11.9"
+   → KHÔNG chọn 3.12, 3.13
+
+   CÁCH 2: Environment Variable
+   → Tìm "Environment Variables"
+   → Thêm biến mới:
+     Key: PYTHON_VERSION
+     Value: 3.11.9
+   → Click "Save Changes"
+
+   CÁCH 3: Build Command
+   → Tìm "Build Command"
+   → Thay đổi thành:
+     python3.11 -m venv .venv && .venv/bin/pip install --upgrade pip && .venv/bin/pip install -r requirements.txt
+
+BƯỚC 6: Save và Redeploy
+   1. Click "Save Changes" (nếu có)
+   2. Vào tab "Manual Deploy"
+   3. Click "Clear build cache & deploy"
+   4. Hoặc "Deploys" → "Deploy latest commit"
+
+BƯỚC 7: Kiểm tra Build Logs
+   1. Vào tab "Logs"
+   2. Xem build logs
+   3. Tìm dòng: "Python version: 3.11.x"
+   4. Đảm bảo KHÔNG phải 3.13
+
+═══════════════════════════════════════════════════════════
+🔍 NẾU KHÔNG TÌM THẤY PYTHON VERSION SETTING
+═══════════════════════════════════════════════════════════
+
+CÁCH 1: Xóa và tạo lại Web Service
+   1. Xóa Web Service hiện tại
+   2. Tạo Web Service mới
+   3. Khi tạo, chọn Python 3.11 ngay từ đầu
+
+CÁCH 2: Dùng Build Command
+   Thay đổi Build Command thành:
+   
+   python3.11 -m venv .venv && \
+   .venv/bin/pip install --upgrade pip && \
+   .venv/bin/pip install -r requirements.txt
+
+   Và Start Command:
+   .venv/bin/gunicorn wsgi:application
+
+CÁCH 3: Tạo file build.sh
+   Tạo file build.sh với nội dung:
+   
+   #!/bin/bash
+   python3.11 -m venv .venv
+   source .venv/bin/activate
+   pip install --upgrade pip
+   pip install -r requirements.txt
+
+   Và thay Build Command thành: bash build.sh
+
+═══════════════════════════════════════════════════════════
+📝 FILE ĐÃ ĐƯỢC TẠO
+═══════════════════════════════════════════════════════════
+
+✅ runtime.txt - python-3.11.9
+✅ .python-version - 3.11.9
+✅ render.yaml - Đã thêm pythonVersion: 3.11.9
+
+═══════════════════════════════════════════════════════════
+⚠️ QUAN TRỌNG
+═══════════════════════════════════════════════════════════
+
+- Render có thể không tự động detect runtime.txt
+- PHẢI chỉ định Python version trong Dashboard Settings
+- Python 3.13 đã remove module cgi → KHÔNG dùng được
+- Chỉ dùng Python 3.11 hoặc thấp hơn
+
+═══════════════════════════════════════════════════════════
+💡 TIP
+═══════════════════════════════════════════════════════════
+
+Nếu vẫn không được, thử:
+1. Xóa Web Service
+2. Tạo lại với Python 3.11 ngay từ đầu
+3. Hoặc liên hệ Render support
+
+═══════════════════════════════════════════════════════════
+
