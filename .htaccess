@@ -1,0 +1,29 @@
+# Apache configuration for Flask app on 123host.com
+# File này dùng cho shared hosting với cPanel
+
+# Enable Passenger (nếu hosting hỗ trợ)
+PassengerEnabled On
+PassengerAppRoot /home/username/public_html
+PassengerBaseURI /
+PassengerPython /usr/bin/python3
+
+# Hoặc sử dụng mod_wsgi (nếu có)
+# WSGIDaemonProcess flaskapp python-path=/home/username/public_html python-home=/home/username/venv
+# WSGIProcessGroup flaskapp
+# WSGIScriptAlias / /home/username/public_html/wsgi.py
+
+# Redirect all requests to wsgi.py
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ wsgi.py/$1 [L]
+
+# Set Python version (thay đổi theo version Python của hosting)
+AddHandler wsgi-script .py
+
+# Security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+

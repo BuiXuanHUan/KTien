@@ -1,0 +1,125 @@
+═══════════════════════════════════════════════════════════
+   HƯỚNG DẪN UPLOAD CODE LÊN GITHUB
+   (Cho người chưa biết dùng GitHub)
+═══════════════════════════════════════════════════════════
+
+📌 CÁCH 1: Dùng GitHub Desktop (Dễ nhất - Khuyến nghị)
+═══════════════════════════════════════════════════════════
+
+BƯỚC 1: Tải GitHub Desktop
+   → Vào: https://desktop.github.com
+   → Click "Download for Windows"
+   → Cài đặt
+
+BƯỚC 2: Đăng nhập
+   → Mở GitHub Desktop
+   → Click "Sign in to GitHub.com"
+   → Đăng nhập (hoặc đăng ký nếu chưa có tài khoản)
+
+BƯỚC 3: Tạo Repository
+   1. Trong GitHub Desktop, click "File" → "New Repository"
+   2. Điền thông tin:
+      Name: dich-thuat (hoặc tên bạn muốn)
+      Description: Tool dich thuat SRT, Word, PDF
+      Local path: E:\TOOL (hoặc để mặc định)
+      ☑ Initialize this repository with a README
+   3. Click "Create Repository"
+
+BƯỚC 4: Commit và Push
+   1. GitHub Desktop sẽ hiển thị tất cả file
+   2. Ở bên trái, bạn sẽ thấy danh sách file thay đổi
+   3. Ở dưới, nhập:
+      Summary: "Initial commit"
+      Description: (có thể để trống)
+   4. Click "Commit to main"
+   5. Click "Publish repository" (nút ở trên)
+   6. Chọn "Keep this code private" hoặc bỏ chọn (public)
+   7. Click "Publish Repository"
+   8. ✅ Xong! Code đã lên GitHub
+
+═══════════════════════════════════════════════════════════
+📌 CÁCH 2: Upload Trực Tiếp Qua Web (Không cần cài gì)
+═══════════════════════════════════════════════════════════
+
+BƯỚC 1: Tạo Tài Khoản GitHub
+   → Vào: https://github.com
+   → Click "Sign up"
+   → Điền thông tin và đăng ký
+   → Xác nhận email
+
+BƯỚC 2: Tạo Repository Mới
+   1. Đăng nhập GitHub
+   2. Click nút "+" ở góc trên bên phải
+   3. Chọn "New repository"
+   4. Điền thông tin:
+      Repository name: dich-thuat
+      Description: Tool dich thuat
+      Public hoặc Private (tùy bạn)
+      ☐ Initialize with README (bỏ chọn)
+   5. Click "Create repository"
+
+BƯỚC 3: Upload File
+   1. Trong repository mới, click "uploading an existing file"
+   2. Kéo thả các file sau vào:
+      
+      ✅ CẦN UPLOAD:
+         - app.py
+         - translator.py
+         - wsgi.py
+         - requirements.txt
+         - gunicorn_config.py
+         - render.yaml
+         - Procfile
+         - .gitignore
+         - README.md
+         - DEPLOY_CLOUD_FREE.md
+         - HUONG_DAN_DEPLOY_CLOUD.txt
+      
+      📁 Tạo thư mục templates:
+         - Click "Add file" → "Create new file"
+         - Tên file: templates/index.html
+         - Copy nội dung từ file index.html vào
+         - Click "Commit new file"
+      
+   3. Scroll xuống dưới, nhập:
+      Commit message: "Initial commit"
+   4. Click "Commit changes"
+   5. ✅ Xong! Code đã lên GitHub
+
+═══════════════════════════════════════════════════════════
+❌ FILE KHÔNG NÊN UPLOAD
+═══════════════════════════════════════════════════════════
+
+   - venv/ (thư mục virtual environment)
+   - __pycache__/ (thư mục cache Python)
+   - uploads/ (file upload tạm)
+   - outputs/ (file output)
+   - *.pyc (file compiled Python)
+   - .DS_Store (file hệ thống Mac)
+   - Thumbs.db (file hệ thống Windows)
+
+   → Các file này đã được thêm vào .gitignore
+   → GitHub Desktop sẽ tự động bỏ qua
+
+═══════════════════════════════════════════════════════════
+✅ SAU KHI UPLOAD LÊN GITHUB
+═══════════════════════════════════════════════════════════
+
+1. Copy link repository:
+   → Vào repository trên GitHub
+   → Click nút "Code" (màu xanh)
+   → Copy link (ví dụ: https://github.com/username/dich-thuat)
+
+2. Dùng link này để deploy lên Render/Railway
+   → Xem file: HUONG_DAN_DEPLOY_CLOUD.txt
+
+═══════════════════════════════════════════════════════════
+💡 TIPS
+═══════════════════════════════════════════════════════════
+
+- Repository Public: Ai cũng xem được code (miễn phí)
+- Repository Private: Chỉ bạn xem được (cần trả phí nếu nhiều)
+- Có thể đổi từ Public sang Private sau
+
+═══════════════════════════════════════════════════════════
+

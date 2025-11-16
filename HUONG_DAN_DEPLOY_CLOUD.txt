@@ -1,0 +1,164 @@
+═══════════════════════════════════════════════════════════
+   HƯỚNG DẪN DEPLOY LÊN CLOUD MIỄN PHÍ
+   (Cho hosting chỉ có File Manager - không có SSH)
+═══════════════════════════════════════════════════════════
+
+🎯 VẤN ĐỀ:
+   Hosting của bạn chỉ hỗ trợ HTML tĩnh, không chạy Python/Flask
+   
+✅ GIẢI PHÁP:
+   Deploy lên cloud service MIỄN PHÍ hỗ trợ Python/Flask
+
+═══════════════════════════════════════════════════════════
+📌 CÁCH 1: RENDER.COM (Dễ nhất - Khuyến nghị)
+═══════════════════════════════════════════════════════════
+
+BƯỚC 1: Tạo GitHub Repository
+   → Vào https://github.com
+   → Đăng ký/Đăng nhập
+   → Tạo repository mới (ví dụ: "dich-thuat")
+   → Upload code lên GitHub:
+      * Cách dễ: Dùng GitHub Desktop
+      * Hoặc: Upload trực tiếp qua web
+
+BƯỚC 2: Tạo Tài Khoản Render
+   → Vào https://render.com
+   → Click "Get Started for Free"
+   → Đăng ký bằng GitHub (dễ nhất)
+   → Xác nhận email
+
+BƯỚC 3: Deploy
+   1. Trong Render dashboard, click "New +"
+   2. Chọn "Web Service"
+   3. Chọn repository GitHub của bạn
+   4. Click "Connect"
+   
+   5. Điền thông tin:
+      Name: dich-thuat
+      Region: Singapore
+      Branch: main
+      Root Directory: (để trống)
+      Runtime: Python 3
+      Build Command: pip install -r requirements.txt
+      Start Command: gunicorn wsgi:application
+      Plan: Free
+   
+   6. Click "Create Web Service"
+   7. Chờ 5-10 phút để deploy
+   8. Lấy URL: https://dich-thuat.onrender.com
+
+BƯỚC 4: Kiểm Tra
+   → Truy cập URL được cung cấp
+   → Test upload và dịch file
+   → ✅ XONG!
+
+═══════════════════════════════════════════════════════════
+📌 CÁCH 2: RAILWAY.APP (Nhanh hơn)
+═══════════════════════════════════════════════════════════
+
+BƯỚC 1: Tạo Tài Khoản
+   → Vào https://railway.app
+   → Đăng ký bằng GitHub
+
+BƯỚC 2: Deploy
+   1. Click "New Project"
+   2. Chọn "Deploy from GitHub repo"
+   3. Chọn repository của bạn
+   4. Railway tự động detect và deploy
+   5. Click "Generate Domain" để lấy URL
+
+═══════════════════════════════════════════════════════════
+📋 FILE CẦN UPLOAD LÊN GITHUB
+═══════════════════════════════════════════════════════════
+
+✅ CẦN UPLOAD:
+   - app.py
+   - translator.py
+   - wsgi.py
+   - requirements.txt
+   - templates/index.html
+   - gunicorn_config.py
+   - render.yaml (nếu dùng Render)
+   - Procfile
+   - .gitignore
+   - README.md
+
+❌ KHÔNG UPLOAD:
+   - venv/
+   - __pycache__/
+   - uploads/
+   - outputs/
+   - *.pyc
+
+═══════════════════════════════════════════════════════════
+⚠️ LƯU Ý QUAN TRỌNG
+═══════════════════════════════════════════════════════════
+
+1. RENDER FREE TIER:
+   ⚠️ App sẽ "sleep" sau 15 phút không dùng
+   → Lần đầu load sau khi sleep sẽ chậm (30-60 giây)
+   → Sau đó chạy bình thường
+   → Có thể upgrade $7/tháng để không sleep
+
+2. RAILWAY FREE TIER:
+   ⚠️ Có $5 credit/tháng (đủ dùng cho app nhỏ)
+   → Tự động scale
+   → Nhanh hơn Render
+
+3. TỐI ƯU:
+   → Giảm kích thước file upload
+   → Tối ưu code
+   → Cache nếu có thể
+
+═══════════════════════════════════════════════════════════
+🐛 XỬ LÝ LỖI
+═══════════════════════════════════════════════════════════
+
+Lỗi "Build failed":
+   → Kiểm tra requirements.txt
+   → Xem build logs trong dashboard
+   → Kiểm tra Python version
+
+Lỗi "Application error":
+   → Kiểm tra Start Command: gunicorn wsgi:application
+   → Kiểm tra file wsgi.py có tồn tại không
+   → Xem logs trong dashboard
+
+Lỗi "Module not found":
+   → Kiểm tra requirements.txt có đầy đủ không
+   → Thử rebuild lại
+
+═══════════════════════════════════════════════════════════
+✅ CHECKLIST
+═══════════════════════════════════════════════════════════
+
+□ Code đã upload lên GitHub
+□ Tạo tài khoản Render/Railway
+□ Tạo Web Service mới
+□ Cấu hình Build Command và Start Command
+□ Deploy thành công
+□ Test ứng dụng hoạt động
+□ Lưu URL để sử dụng
+
+═══════════════════════════════════════════════════════════
+🎉 KẾT QUẢ
+═══════════════════════════════════════════════════════════
+
+Sau khi deploy, bạn sẽ có:
+✅ URL công khai (ví dụ: https://dich-thuat.onrender.com)
+✅ SSL miễn phí (HTTPS)
+✅ Tự động deploy khi push code mới
+✅ Không cần quản lý server
+✅ Hoàn toàn miễn phí!
+
+═══════════════════════════════════════════════════════════
+
+💡 TIP: Nếu chưa biết dùng GitHub, có thể:
+   1. Tải GitHub Desktop: https://desktop.github.com
+   2. Cài đặt và đăng nhập
+   3. File → Add Local Repository
+   4. Chọn thư mục E:\TOOL
+   5. Commit và Push lên GitHub
+
+═══════════════════════════════════════════════════════════
+
